@@ -1,6 +1,6 @@
 // ===== 狀態 =====
 const booking = {
-  service: '',
+  service: [],
   date: '',
   time: '',
   name: '',
@@ -10,11 +10,17 @@ const booking = {
 };
 
 // ===== 服務卡點擊 =====
-document.querySelectorAll('.service-card').forEach(card => {
-  card.addEventListener('click', () => {
-    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
-    card.classList.add('selected');
-    booking.service = card.querySelector('input').value;
+document.querySelectorAll('.service-card input').forEach(input => {
+  input.addEventListener('change', () => {
+    const card = input.closest('.service-card');
+    const val = input.value;
+    if (input.checked) {
+      card.classList.add('selected');
+      booking.service.push(val);
+    } else {
+      card.classList.remove('selected');
+      booking.service.splice(booking.service.indexOf(val), 1);
+    }
   });
 });
 
@@ -64,8 +70,8 @@ function updateProgress(step) {
 // ===== 驗證 =====
 function validateStep(step) {
   if (step === 1) {
-    if (!booking.service) {
-      alert('請選擇一項服務');
+    if (booking.service.length === 0) {
+      alert('請至少選擇一項服務');
       return false;
     }
   }
@@ -111,7 +117,7 @@ function fillConfirm() {
   const formatted = dateObj.toLocaleDateString('zh-TW', {
     year: 'numeric', month: 'long', day: 'numeric', weekday: 'short'
   });
-  document.getElementById('confirm-service').textContent = booking.service;
+  document.getElementById('confirm-service').textContent = booking.service.join('、');
   document.getElementById('confirm-date').textContent = formatted;
   document.getElementById('confirm-time').textContent = booking.time;
   document.getElementById('confirm-name').textContent = booking.name;
@@ -135,7 +141,7 @@ async function submitBooking() {
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzhcmOHejauJUOnauHgMuXW1gLBgwPlWznTk09nWAWw1cr2MDfJiEP4TGJPNRdjUL0/exec';
 
   const payload = {
-    service: booking.service,
+    service: booking.service.join('、'),
     date: booking.date,
     time: booking.time,
     name: booking.name,
@@ -162,7 +168,13 @@ async function submitBooking() {
 
 // ===== 重設表單 =====
 function resetForm() {
-  Object.keys(booking).forEach(k => booking[k] = '');
+  booking.service = [];
+  booking.date = '';
+  booking.time = '';
+  booking.name = '';
+  booking.phone = '';
+  booking.note = '';
+  booking.source = '';
   document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
   document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
   dateInput.value = '';
