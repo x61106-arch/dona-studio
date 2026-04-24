@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DONA STUDIO｜線上預約</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <img src="logo.png" alt="DONA STUDIO" class="logo">
+      <div class="header-text">
+        <h1>DONA STUDIO</h1>
+        <p>皮膚管理 · 除毛專業工作室</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="progress-wrap">
+    <div class="progress-bar">
+      <div class="step active" data-step="1">
+        <div class="step-dot"></div>
+        <span>選擇服務</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" data-step="2">
+        <div class="step-dot"></div>
+        <span>選擇時間</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" data-step="3">
+        <div class="step-dot"></div>
+        <span>填寫資料</span>
+      </div>
+      <div class="step-line"></div>
+      <div class="step" data-step="4">
+        <div class="step-dot"></div>
+        <span>確認預約</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Step 1: 選擇服務 -->
+    <section class="booking-step active" id="step-1">
+      <h2 class="step-title">請選擇服務項目</h2>
+      <p class="step-hint">每次預約限選一項服務</p>
+
+      <div class="service-group">
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-icon">🌿</span>
+            <h3>皮膚管理</h3>
+          </div>
+          <div class="service-list">
+            <label class="service-card">
+              <input type="radio" name="service" value="臉部保養">
+              <div class="card-content">
+                <div class="card-title">臉部保養</div>
+                <div class="card-desc">深層清潔・補水保濕・肌膚修護</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="粉刺/痘痘護理">
+              <div class="card-content">
+                <div class="card-title">粉刺 / 痘痘護理</div>
+                <div class="card-desc">深層清毛孔・控油・修護問題肌</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="美白/淡斑">
+              <div class="card-content">
+                <div class="card-title">美白 / 淡斑</div>
+                <div class="card-desc">均勻膚色・淡化色素・提亮光澤</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+          </div>
+        </div>
+
+        <div class="service-category">
+          <div class="category-header">
+            <span class="category-icon">✨</span>
+            <h3>除毛</h3>
+          </div>
+          <div class="service-list">
+            <label class="service-card">
+              <input type="radio" name="service" value="臉部除毛">
+              <div class="card-content">
+                <div class="card-title">臉部除毛</div>
+                <div class="card-desc">上唇・下巴・臉頰・鬢角</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="腋下除毛">
+              <div class="card-content">
+                <div class="card-title">腋下除毛</div>
+                <div class="card-desc">溫和除毛・不傷肌膚</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="四肢除毛">
+              <div class="card-content">
+                <div class="card-title">四肢除毛</div>
+                <div class="card-desc">手臂・小腿・大腿</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="比基尼線除毛">
+              <div class="card-content">
+                <div class="card-title">比基尼線除毛</div>
+                <div class="card-desc">私密部位專業護理</div>
+              </div>
+              <div class="check-icon">✓</div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-next" onclick="nextStep(1)" id="btn-step1">下一步</button>
+      </div>
+    </section>
+
+    <!-- Step 2: 選擇時間 -->
+    <section class="booking-step" id="step-2">
+      <h2 class="step-title">選擇預約日期與時間</h2>
+      <p class="step-hint">請選擇方便的日期與時段</p>
+
+      <div class="datetime-wrap">
+        <div class="date-section">
+          <label class="field-label">預約日期</label>
+          <input type="date" id="booking-date" class="date-input" min="">
+        </div>
+
+        <div class="time-section">
+          <label class="field-label">選擇時段</label>
+          <div class="time-grid" id="time-grid">
+            <button class="time-slot" onclick="selectTime(this)">10:00</button>
+            <button class="time-slot" onclick="selectTime(this)">10:30</button>
+            <button class="time-slot" onclick="selectTime(this)">11:00</button>
+            <button class="time-slot" onclick="selectTime(this)">11:30</button>
+            <button class="time-slot" onclick="selectTime(this)">13:00</button>
+            <button class="time-slot" onclick="selectTime(this)">13:30</button>
+            <button class="time-slot" onclick="selectTime(this)">14:00</button>
+            <button class="time-slot" onclick="selectTime(this)">14:30</button>
+            <button class="time-slot" onclick="selectTime(this)">15:00</button>
+            <button class="time-slot" onclick="selectTime(this)">15:30</button>
+            <button class="time-slot" onclick="selectTime(this)">16:00</button>
+            <button class="time-slot" onclick="selectTime(this)">16:30</button>
+            <button class="time-slot" onclick="selectTime(this)">17:00</button>
+            <button class="time-slot" onclick="selectTime(this)">17:30</button>
+            <button class="time-slot" onclick="selectTime(this)">18:00</button>
+            <button class="time-slot" onclick="selectTime(this)">18:30</button>
+            <button class="time-slot" onclick="selectTime(this)">19:00</button>
+            <button class="time-slot" onclick="selectTime(this)">19:30</button>
+            <button class="time-slot" onclick="selectTime(this)">20:00</button>
+            <button class="time-slot" onclick="selectTime(this)">20:30</button>
+            <button class="time-slot" onclick="selectTime(this)">21:00</button>
+            <button class="time-slot" onclick="selectTime(this)">21:30</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="prevStep(2)">上一步</button>
+        <button class="btn-next" onclick="nextStep(2)" id="btn-step2">下一步</button>
+      </div>
+    </section>
+
+    <!-- Step 3: 填寫資料 -->
+    <section class="booking-step" id="step-3">
+      <h2 class="step-title">填寫預約資料</h2>
+      <p class="step-hint">請填寫您的聯絡資訊</p>
+
+      <div class="form-wrap">
+        <div class="form-field">
+          <label class="field-label">姓名 <span class="required">*</span></label>
+          <input type="text" id="customer-name" class="text-input" placeholder="請輸入姓名">
+        </div>
+        <div class="form-field">
+          <label class="field-label">手機號碼 <span class="required">*</span></label>
+          <input type="tel" id="customer-phone" class="text-input" placeholder="09xxxxxxxx">
+        </div>
+        <div class="form-field">
+          <label class="field-label">備註（可選填）</label>
+          <textarea id="customer-note" class="text-input textarea" placeholder="如有特殊需求或問題，歡迎在此備註"></textarea>
+        </div>
+        <div class="form-field">
+          <label class="field-label">如何得知 DONA STUDIO？</label>
+          <select id="customer-source" class="text-input select-input">
+            <option value="">— 請選擇 —</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Facebook">Facebook</option>
+            <option value="朋友介紹">朋友介紹</option>
+            <option value="Google">Google 搜尋</option>
+            <option value="其他">其他</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="prevStep(3)">上一步</button>
+        <button class="btn-next" onclick="nextStep(3)" id="btn-step3">下一步</button>
+      </div>
+    </section>
+
+    <!-- Step 4: 確認預約 -->
+    <section class="booking-step" id="step-4">
+      <h2 class="step-title">確認預約資訊</h2>
+      <p class="step-hint">請確認以下資訊是否正確</p>
+
+      <div class="confirm-card">
+        <div class="confirm-logo">
+          <img src="logo.png" alt="DONA STUDIO">
+        </div>
+        <div class="confirm-rows">
+          <div class="confirm-row">
+            <span class="confirm-label">服務項目</span>
+            <span class="confirm-value" id="confirm-service">—</span>
+          </div>
+          <div class="confirm-divider"></div>
+          <div class="confirm-row">
+            <span class="confirm-label">預約日期</span>
+            <span class="confirm-value" id="confirm-date">—</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-label">預約時間</span>
+            <span class="confirm-value" id="confirm-time">—</span>
+          </div>
+          <div class="confirm-divider"></div>
+          <div class="confirm-row">
+            <span class="confirm-label">姓名</span>
+            <span class="confirm-value" id="confirm-name">—</span>
+          </div>
+          <div class="confirm-row">
+            <span class="confirm-label">手機</span>
+            <span class="confirm-value" id="confirm-phone">—</span>
+          </div>
+          <div class="confirm-row" id="confirm-note-row">
+            <span class="confirm-label">備註</span>
+            <span class="confirm-value" id="confirm-note">—</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="notice">送出後，DONA STUDIO 將盡快與您確認預約 🐱</p>
+
+      <div class="btn-row">
+        <button class="btn-back" onclick="prevStep(4)">上一步</button>
+        <button class="btn-submit" onclick="submitBooking()" id="btn-submit">確認送出預約</button>
+      </div>
+    </section>
+
+    <!-- Step 5: 完成 -->
+    <section class="booking-step" id="step-done">
+      <div class="done-wrap">
+        <img src="logo.png" alt="DONA STUDIO" class="done-logo">
+        <div class="done-icon">🌿</div>
+        <h2 class="done-title">預約申請已送出！</h2>
+        <p class="done-msg">感謝您的預約，DONA STUDIO 將盡快與您確認時間。<br>如有任何問題，歡迎透過 Instagram 或電話聯繫我們。</p>
+        <button class="btn-next" onclick="resetForm()" style="margin-top:32px;">再次預約</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 DONA STUDIO · 皮膚管理 · 除毛</p>
+  </footer>
+
+  <script src="booking.js"></script>
+</body>
+</html>
